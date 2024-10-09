@@ -1,0 +1,44 @@
+python -m venv meu_trabalho
+meu_trabalho\Scripts\activate
+pip install pygame
+
+
+import pygame
+from pygame.locals import *
+
+pygame.init()
+
+# TELA
+tamanho_tela = (600, 600)
+tela = pygame.display.set_mode(tamanho_tela)
+pygame.display.set_caption('Jogo da Cobrinha')
+
+ESQUERDA = K_LEFT
+DIREITA = K_RIGHT
+CIMA = K_UP
+BAIXO = K_DOWN
+
+# COBRINHA
+cobrinha_pos = [(300, 300)]
+cobrinha_sup = pygame.Surface((10, 10))
+cobrinha_sup.fill((255, 255, 255))
+cobrinha_dir = ESQUERDA
+
+#maçã
+maca_pos = (200, 300)
+maca_sup = pygame.Surface((10, 10))
+maca_sup.fill((255, 0, 0))
+maca_dir = ESQUERDA
+
+while True:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            quit()
+    
+    for posicao in cobrinha_pos:
+        tela.blit(cobrinha_sup, posicao)
+    
+    tela.blit(maca_sup, maca_pos)
+
+    pygame.display.update()
